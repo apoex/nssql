@@ -18,3 +18,4 @@ plugins:
       - test/
   rubocop:
     enabled: true
+    channel: rubocop-0-66
