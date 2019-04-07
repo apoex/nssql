@@ -1,8 +1,10 @@
-# Nssql
+# NSSQL
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/nssql`. To experiment with that code, run `bin/console` for an interactive prompt.
+[![Build Status](https://travis-ci.org/apoex/nssql.svg?branch=master)](https://travis-ci.org/apoex/nssql)
+[![Maintainability](https://api.codeclimate.com/v1/badges/0bc97f0e7fef36bcf922/maintainability)](https://codeclimate.com/github/apoex/nssql/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/0bc97f0e7fef36bcf922/test_coverage)](https://codeclimate.com/github/apoex/nssql/test_coverage)
 
-TODO: Delete this and the text above, and describe your gem
+NSSQL allows you to query directly against NetSuite through an ODBC connection. Define your tables, primary keys and columns and query away!
 
 ## Installation
 
@@ -22,7 +24,65 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Follow the steps below to start using NSSQL.
+
+### Settings
+
+```ruby
+NSSQL::Settings.configure do |config|
+  config.user     = 'USER'
+  config.password = 'PASSWORD'
+end
+```
+
+### Table
+
+```ruby
+class TestTable < NSSQL::Table
+  table_name   'test_table'
+  primary_keys 'id', 'line_id'
+  columns      'id', 'line_id', 'name'
+end
+```
+
+### Table
+
+`TestTable.select_columns_query` will generate:
+
+```SQL
+SELECT
+  id,line_id,name
+FROM
+  test_table
+ORDER BY
+  id
+```
+
+We can pass options, like `TestTable.select_columns_query(where: 'id > 500')` and this will generate:
+
+```SQL
+SELECT
+  id,line_id,name
+FROM
+  test_table
+WHERE id > 500
+ORDER BY
+  id
+```
+
+### Other selects
+
+Select to file
+
+```ruby
+NSSQL.select_to_file('SELECT 1+1')
+```
+
+Select array
+
+```ruby
+NSSQL.select_array('SELECT 1+1')
+```
 
 ## Development
 
