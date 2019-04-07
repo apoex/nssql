@@ -1,4 +1,6 @@
-require "test_helper"
+# frozen_string_literal: true
+
+require 'test_helper'
 
 class NssqlSettingsTest < Minitest::Test
   def test_that_it_is_configurable

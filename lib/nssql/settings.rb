@@ -5,12 +5,12 @@ module NSSQL
   class Settings
     include Singleton
 
-    SETTINGS = [
-      :user,
-      :password,
+    SETTINGS = %i[
+      user
+      password
     ].freeze
 
-    attr_accessor *SETTINGS
+    attr_accessor(*SETTINGS)
 
     class << self
       SETTINGS.each do |setting|

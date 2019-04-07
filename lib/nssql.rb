@@ -1,18 +1,20 @@
-require "nssql/version"
-require "nssql/settings"
-require "nssql/table"
+# frozen_string_literal: true
+
+require 'nssql/version'
+require 'nssql/settings'
+require 'nssql/table'
 
 require 'odbc_utf8'
 require 'tempfile'
 
+# NSSQL module.
+#
 module NSSQL
   class Error < StandardError; end
 
   class << self
     def select_array(query)
-      execute(query) do |result|
-        result.fetch_all
-      end
+      execute(query, &:fetch_all)
     end
 
     def select_to_file(query)
@@ -45,7 +47,7 @@ module NSSQL
     end
 
     def one_line_query(query)
-      query.gsub("\n", ' ').gsub(/\s+/, ' ').strip
+      query.tr("\n", ' ').gsub(/\s+/, ' ').strip
     end
 
     def netsuite_connection

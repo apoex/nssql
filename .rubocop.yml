@@ -1,0 +1,24 @@
+# This is the modified configuration used to check the source code.
+
+# === OVERRIDE ===
+#
+# - https://rubocop.readthedocs.io/en/latest/cops_metrics/#metricslinelength
+#
+Metrics/LineLength:
+  Max: 120
+
+# === OVERRIDE ===
+#
+# - https://rubocop.readthedocs.io/en/latest/cops_metrics/#metricsmethodlength
+#
+Metrics/MethodLength:
+  Max: 15
+
+# === DISABLE
+#
+# - https://rubocop.readthedocs.io/en/latest/cops_style/#styletrivialaccessors
+#
+# Why? Faulty corrections.
+#
+Style/TrivialAccessors:
+  Enabled: false
