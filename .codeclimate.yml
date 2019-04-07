@@ -1,0 +1,22 @@
+# Please read:
+# - https://docs.codeclimate.com/docs/default-analysis-configuration
+# - https://docs.codeclimate.com/docs/advanced-configuration
+#
+version: "2"
+checks:
+  file-lines:
+    enabled: false
+  method-lines:
+    enabled: false
+plugins:
+  bundler-audit:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - ruby:
+    exclude_patterns:
+      - test/
+  rubocop:
+    enabled: true
