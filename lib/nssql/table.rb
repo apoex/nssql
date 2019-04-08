@@ -10,24 +10,30 @@ module NSSQL
 
         <<~SQL
           SELECT
-            #{@columns.join(',')}
+            #{columns.join(',')}
           FROM
-            #{@table_name}
+            #{table_name}
           #{where_statement if where}
           ORDER BY
-            #{@primary_keys.first}
+            #{primary_keys.first}
         SQL
       end
 
-      def table_name(table_name)
+      def table_name(table_name = nil)
+        return @table_name if table_name.nil?
+
         @table_name = table_name
       end
 
       def primary_keys(*primary_keys)
+        return @primary_keys if primary_keys.empty?
+
         @primary_keys = primary_keys
       end
 
       def columns(*columns)
+        return @columns if columns.empty?
+
         @columns = columns
       end
     end
