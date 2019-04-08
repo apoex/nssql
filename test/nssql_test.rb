@@ -20,6 +20,25 @@ class NssqlTest < Minitest::Test
     end
   end
 
+  def test_select_array
+    odbc_stub = Minitest::Mock.new
+    prepare_stub = Minitest::Mock.new
+    execute_stub = Minitest::Mock.new
+
+    odbc_stub.expect(:prepare, prepare_stub, ['SELECT 1+1'])
+    prepare_stub.expect(:execute, execute_stub)
+    execute_stub.expect(:fetch_all, [['2']])
+    execute_stub.expect(:drop, nil)
+
+    ODBC.stub :connect, odbc_stub do
+      assert_equal [['2']], NSSQL.select_array('SELECT 1+1')
+    end
+
+    odbc_stub.verify
+    prepare_stub.verify
+    execute_stub.verify
+  end
+
   def test_select_to_file_produces_correct_command
     expected_command = "echo \"SELECT 1+1\" | isql -v Netsuite USER 'PASSWORD' -b -q -d, | iconv -f iso-8859-1 -t utf-8"
 

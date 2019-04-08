@@ -35,11 +35,12 @@ module NSSQL
     private
 
     def execute(query)
-      netsuite_connection.prepare(query).execute.tap do |result|
-        yield result if block_given?
+      statement = netsuite_connection.prepare(query).execute
+      result = yield statement
 
-        result.drop
-      end
+      statement.drop
+
+      result
     end
 
     def system_call(command)
