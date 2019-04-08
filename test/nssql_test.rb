@@ -95,4 +95,8 @@ class NssqlTest < Minitest::Test
       NSSQL.select_to_file(query)
     end
   end
+
+  def test_system_call
+    assert_equal `ls`, NSSQL.send(:system_call, 'ls')
+  end
 end
