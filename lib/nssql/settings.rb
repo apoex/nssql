@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'singleton'
+
 module NSSQL
   # Simple class for configuration of credentials.
   class Settings

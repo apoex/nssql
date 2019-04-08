@@ -9,6 +9,18 @@ class NssqlTableTest < Minitest::Test
     columns      'id', 'line_id', 'name'
   end
 
+  def test_table_name
+    assert_equal 'test_table', TestTable.table_name
+  end
+
+  def test_primary_keys
+    assert_equal %w[id line_id], TestTable.primary_keys
+  end
+
+  def test_columns
+    assert_equal %w[id line_id name], TestTable.columns
+  end
+
   def test_select_columns_query_without_where
     query = TestTable.select_columns_query
 

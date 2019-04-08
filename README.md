@@ -46,7 +46,7 @@ class TestTable < NSSQL::Table
 end
 ```
 
-### Table
+### Select columns
 
 `TestTable.select_columns_query` will generate:
 
