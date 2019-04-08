@@ -1,5 +1,6 @@
 # NSSQL
 
+[![Gem Version](https://badge.fury.io/rb/nssql.svg)](https://badge.fury.io/rb/nssql)
 [![Build Status](https://travis-ci.org/apoex/nssql.svg?branch=master)](https://travis-ci.org/apoex/nssql)
 [![Maintainability](https://api.codeclimate.com/v1/badges/0bc97f0e7fef36bcf922/maintainability)](https://codeclimate.com/github/apoex/nssql/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/0bc97f0e7fef36bcf922/test_coverage)](https://codeclimate.com/github/apoex/nssql/test_coverage)
