@@ -39,16 +39,23 @@ end
 ### Table
 
 ```ruby
-class TestTable < NSSQL::Table
-  table_name   'test_table'
-  primary_keys 'id', 'line_id'
-  columns      'id', 'line_id', 'name'
+class TestTable
+  include NSSQL::Table
+
+  ns_table_name   :test_table
+  ns_primary_keys :id, :line_id
+  ns_column       :id
+  ns_column       :line_id
+  ns_column       :name, as: :display_name
 end
+
+TestTable.ns_column_names # => [:id, :line_id, :name]
+TestTable.ns_aliased_column_names # => [:id, :line_id, :display_name]
 ```
 
 ### Select columns
 
-`TestTable.select_columns_query` will generate:
+`TestTable.select_ns_columns_query` will generate:
 
 ```SQL
 SELECT
@@ -59,7 +66,7 @@ ORDER BY
   id
 ```
 
-We can pass options, like `TestTable.select_columns_query(where: 'id > 500')` and this will generate:
+We can pass options, like `TestTable.select_ns_columns_query(where: 'id > 500')` and this will generate:
 
 ```SQL
 SELECT
