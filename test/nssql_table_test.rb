@@ -6,25 +6,25 @@ class NssqlTableTest < Minitest::Test
   class TestTable
     include NSSQL::Table
 
-    table_name   'test_table'
-    primary_keys 'id', 'line_id'
-    columns      'id', 'line_id', 'name'
+    ns_table_name   'test_table'
+    ns_primary_keys 'id', 'line_id'
+    ns_columns      'id', 'line_id', 'name'
   end
 
   def test_table_name
-    assert_equal 'test_table', TestTable.table_name
+    assert_equal 'test_table', TestTable.ns_table_name
   end
 
   def test_primary_keys
-    assert_equal %w[id line_id], TestTable.primary_keys
+    assert_equal %w[id line_id], TestTable.ns_primary_keys
   end
 
   def test_columns
-    assert_equal %w[id line_id name], TestTable.columns
+    assert_equal %w[id line_id name], TestTable.ns_columns
   end
 
   def test_select_columns_query_without_where
-    query = TestTable.select_columns_query
+    query = TestTable.select_ns_columns_query
 
     expected_query = <<~SQL
       SELECT
@@ -40,7 +40,7 @@ class NssqlTableTest < Minitest::Test
   end
 
   def test_select_columns_query_with_where
-    query = TestTable.select_columns_query(where: 'id > 500')
+    query = TestTable.select_ns_columns_query(where: 'id > 500')
 
     expected_query = <<~SQL
       SELECT
