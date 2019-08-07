@@ -3,7 +3,9 @@
 require 'test_helper'
 
 class NssqlTableTest < Minitest::Test
-  class TestTable < NSSQL::Table
+  class TestTable
+    include NSSQL::Table
+
     table_name   'test_table'
     primary_keys 'id', 'line_id'
     columns      'id', 'line_id', 'name'

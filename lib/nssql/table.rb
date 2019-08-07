@@ -3,8 +3,12 @@
 module NSSQL
   # Base class for representing NetSuite tables.
   # Table name, primary keys and wanted columns are expected to be defined.
-  class Table
-    class << self
+  module Table
+    def self.included(klass)
+      klass.extend(ClassMethods)
+    end
+
+    module ClassMethods
       def select_columns_query(where: nil)
         where_statement = "WHERE #{where}" if where
 
