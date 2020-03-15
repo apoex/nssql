@@ -17,7 +17,7 @@ module NSSQL
     class << self
       SETTINGS.each do |setting|
         define_method(setting) do
-          instance.public_send(setting)
+          instance.public_send(setting) || ENV["NETSUITE_#{setting.upcase}"]
         end
       end
 
