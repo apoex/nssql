@@ -36,6 +36,8 @@ NSSQL::Settings.configure do |config|
 end
 ```
 
+or set `ENV['NETSUITE_USER']` and `ENV['NETSUITE_PASSWORD']`
+
 ### Table
 
 ```ruby
