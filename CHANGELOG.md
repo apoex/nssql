@@ -1,3 +1,7 @@
+## 1.1.0 (2020-03-15)
+
+  - Adds support to configure credentials via `ENV['NETSUITE_USER']` and `ENV['NETSUITE_PASSWORD']`
+
 ## 1.0.0 (2019-08-07)
 
   - New way of defining columns: `ns_column :column`
