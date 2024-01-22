@@ -1,7 +1,3 @@
-## 1.1.1 (2024-01-22)
-
-  - Ruby 3.0.4 and ruby-odbc 0.999991
-
 ## 1.1.0 (2020-03-15)
 
   - Adds support to configure credentials via `ENV['NETSUITE_USER']` and `ENV['NETSUITE_PASSWORD']`
