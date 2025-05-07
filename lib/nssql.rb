@@ -3,6 +3,7 @@
 require 'nssql/version'
 require 'nssql/settings'
 require 'nssql/table'
+require 'nssql/odbc_authentication'
 
 require 'odbc_utf8'
 require 'tempfile'
@@ -20,7 +21,7 @@ module NSSQL
     def select_to_file(query)
       query = one_line_query(query)
 
-      isql_command = "isql -v Netsuite #{NSSQL::Settings.user} '#{NSSQL::Settings.password}' -b -q -d,"
+      isql_command = "isql -k \"#{NSSQL::OdbcAuthentication.drvconnect_string}\" -v -b -q -d,"
       iconv_command = 'iconv -f iso-8859-1 -t utf-8'
 
       Tempfile.new.tap do |file|
@@ -52,7 +53,10 @@ module NSSQL
     end
 
     def netsuite_connection
-      ODBC.connect('NetSuite', NSSQL::Settings.user, NSSQL::Settings.password)
+      driver = ODBC::Driver.new
+      driver.name = 'NetSuite'
+      driver.attrs = NSSQL::OdbcAuthentication.drvconnect_hash
+      ODBC::Database.new.drvconnect(driver)
     end
   end
 end
