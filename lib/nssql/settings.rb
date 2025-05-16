@@ -8,8 +8,11 @@ module NSSQL
     include Singleton
 
     SETTINGS = %i[
-      user
-      password
+      odbc_user
+      odbc_client_id
+      odbc_certificate_id
+      odbc_private_key
+      odbc_account
     ].freeze
 
     attr_accessor(*SETTINGS)

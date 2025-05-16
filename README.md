@@ -31,12 +31,17 @@ Follow the steps below to start using NSSQL.
 
 ```ruby
 NSSQL::Settings.configure do |config|
-  config.user     = 'USER'
-  config.password = 'PASSWORD'
+  config.odbc_user           = 'ODBC_USER'
+  config.odbc_client_id      = 'ODBC_CLIENT_ID'
+  config.odbc_certificate_id = 'ODBC_CERTIFICATE_ID'
+  config.odbc_private_key    = 'ODBC_PRIVATE_KEY'
+  config.odbc_account        = 'ODBC_ACCOUNT'
 end
 ```
 
-or set `ENV['NETSUITE_USER']` and `ENV['NETSUITE_PASSWORD']`
+or set `ENV['ODBC_USER']`, `ENV['ODBC_CLIENT_ID']`,
+`ENV['ODBC_CERTIFICATE_ID']`, `ENV['ODBC_PRIVATE_KEY']` and
+`ENV['ODBC_ACCOUNT']`
 
 ### Table
 
