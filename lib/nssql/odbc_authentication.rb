@@ -26,7 +26,7 @@ module NSSQL
         ServerDataSource=NetSuite2.com;
         Encrypted=1;
         AllowSinglePacketLogout=1;
-        Truststore=/opt/netsuite/odbcclient/cert/ca3.cer;
+        Truststore=/opt/netsuite/odbcclient/cert/ca3.cer,/opt/netsuite/odbcclient/cert/ca4.cer;
         UID=#{user};
         CustomProperties=AccountID=#{account_id};RoleID=3;OAuth2Token=#{access_token};
       DRVCONNECT
@@ -40,7 +40,7 @@ module NSSQL
         "ServerDataSource" => "NetSuite2.com",
         "Encrypted" => "1",
         "AllowSinglePacketLogout" => "1",
-        "Truststore" => "/opt/netsuite/odbcclient/cert/ca3.cer",
+        "Truststore" => "/opt/netsuite/odbcclient/cert/ca3.cer,/opt/netsuite/odbcclient/cert/ca4.cer",
         "UID" => user,
         "CustomProperties" => "AccountID=#{account_id};RoleID=3;OAuth2Token=#{access_token}"
       }
